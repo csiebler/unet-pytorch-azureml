@@ -5,6 +5,8 @@ predictions
 unet.pt
 temp/
 .azureml
+run.json
+model.json
 
 # Created by https://www.gitignore.io/api/osx,linux,matlab,python,pycharm+all,intellij+all,jupyternotebook
 

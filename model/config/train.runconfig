@@ -62,7 +62,7 @@ data:
   lggmrisegmentation:
     dataLocation:
       dataset:
-        name: lgg-mri-segmentation
+        id: c7e23b60-04c8-46dc-96c5-d9f741f6234b
       datapath:
     createOutputDirectories: false
     mechanism: mount
