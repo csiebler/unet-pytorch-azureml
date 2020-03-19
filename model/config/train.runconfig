@@ -1,7 +1,7 @@
 script: train.py
 arguments:
 - --images
-- DatasetConsumptionConfig:lgg-mri-segmentation
+- DatasetConsumptionConfig:lggmrisegmentation
 - --weights
 - ./outputs/
 - --batch-size
@@ -59,14 +59,13 @@ history:
 mpi:
   processCountPerNode: 1
 data:
-  lgg-mri-segmentation:
+  lggmrisegmentation:
     dataLocation:
       dataset:
         name: lgg-mri-segmentation
       datapath:
     createOutputDirectories: false
     mechanism: mount
-    environmentVariableName: lgg-mri-segmentation
+    environmentVariableName: lggmrisegmentation
     pathOnCompute:
     overwrite: false
-sourceDirectoryDataStore:
