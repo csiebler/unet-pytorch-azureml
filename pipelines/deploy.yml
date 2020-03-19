@@ -39,7 +39,7 @@ steps:
     scriptLocation: inlineScript
     scriptType: bash
     inlineScript: |
-      LATEST_VERSION = `az ml model list -n brain-segmentation-pytorch --query '[0].version'`
+      LATEST_VERSION=`az ml model list -n $(ml-model-name) --query '[0].version'`
       az ml model deploy -n brain-segmentation-aci -m $(ml-model-name):$LATEST_VERSION --ic config/inference-config.yml --dc config/deployment-config-aci.yml --overwrite
 
 # Add potential automated tests
@@ -52,5 +52,5 @@ steps:
     scriptLocation: inlineScript
     scriptType: bash
     inlineScript: |
-      LATEST_VERSION = `az ml model list -n brain-segmentation-pytorch --query '[0].version'`
+      LATEST_VERSION=`az ml model list -n $(ml-model-name) --query '[0].version'`
       az ml model deploy -n brain-segmentation-aks --ct $(ml-aks-name) -m $(ml-model-name):$LATEST_VERSION --ic config/inference-config-gpu.yml --dc config/deployment-config-aks.yml  --overwrite
