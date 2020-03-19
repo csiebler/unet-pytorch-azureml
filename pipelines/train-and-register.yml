@@ -4,7 +4,7 @@ variables:
   ml-rg: 'aml-demo' # AML resource Group name
   ml-ct: 'gpu-train-nc24r' # AML Compute cluster name
   ml-path: 'model/' # Model directory path in repo
-  ml-exp: 'brain-segmentation-pytorch' # Experiment name
+  ml-exp: 'brain-segmentation-pytorch-ci' # Experiment name
   ml-model-name: 'brain-segmentation-pytorch' # Model name
 
 trigger: none
