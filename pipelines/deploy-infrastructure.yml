@@ -17,8 +17,9 @@ steps:
   inputs:
     azureSubscription: $(ml-ws-connection)
     scriptLocation: inlineScript
-    scriptType: 'bash'
-    inlineScript: 'az extension add -n azure-cli-ml'
+    scriptType: bash
+    inlineScript: |
+      az extension add -n azure-cli-ml
 
 - task: AzureCLI@2
   displayName: 'Attach folder to workspace'
@@ -26,8 +27,9 @@ steps:
     azureSubscription: $(ml-ws-connection)
     workingDirectory: $(ml-path)
     scriptLocation: inlineScript
-    scriptType: 'bash'
-    inlineScript: 'az ml folder attach -w $(ml-ws) -g $(ml-rg)'
+    scriptType: bash
+    inlineScript: |
+      az ml folder attach -w $(ml-ws) -g $(ml-rg)
 
 - task: AzureCLI@2
   displayName: 'Create GPU-based compute for training'
@@ -35,8 +37,9 @@ steps:
     azureSubscription: $(ml-ws-connection)
     workingDirectory: $(ml-path)
     scriptLocation: inlineScript
-    scriptType: 'bash'
-    inlineScript: 'az ml computetarget create amlcompute -n $(ml-ct) --vm-size Standard_NC24r --max-nodes 1 --idle-seconds-before-scaledown 300'
+    scriptType: bash
+    inlineScript: |
+      az ml computetarget create amlcompute -n $(ml-ct) --vm-size Standard_NC24r --max-nodes 1 --idle-seconds-before-scaledown 300
 
 - task: AzureCLI@2
   displayName: 'Create GPU-based AKS cluster'
@@ -44,5 +47,6 @@ steps:
     azureSubscription: $(ml-ws-connection)
     workingDirectory: $(ml-path)
     scriptLocation: inlineScript
-    scriptType: 'bash'
-    inlineScript: 'az ml computetarget create aks --name $(ml-aks-name) --vm-size Standard_NC6 --cluster-purpose DevTest'
+    scriptType: bash
+    inlineScript: |
+      az ml computetarget create aks --name $(ml-aks-name) --vm-size Standard_NC6 --cluster-purpose DevTest
