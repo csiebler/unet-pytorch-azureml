@@ -8,8 +8,7 @@ variables:
   ml-model-name: 'brain-segmentation-pytorch' # Model name
   ml-dataset: 'lgg-mri-segmentation' # Dataset name
 
-trigger:
-- master
+trigger: none
 
 pool:
   vmImage: 'Ubuntu-16.04'
