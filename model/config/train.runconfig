@@ -7,7 +7,7 @@ arguments:
 - --batch-size
 - 16
 - --epochs
-- 100
+- 25
 - --lr
 - 0.001
 - --workers
