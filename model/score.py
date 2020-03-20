@@ -43,7 +43,12 @@ def run(request):
     if request.method == 'POST':
         reqBody = request.get_data(False)
         resp = score(reqBody)
-        return AMLResponse(resp, 200)
+
+        headers = {
+            'Content-Type': 'image/png'
+        }
+        
+        return AMLResponse(resp, 200, headers)
     if request.method == 'GET':
         respBody = str.encode("GET is not supported")
         return AMLResponse(respBody, 405)
