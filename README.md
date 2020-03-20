@@ -1,13 +1,19 @@
 # unet-pytorch-azureml
 
-An example for running UNET with PyTorch on Azure Machine Learning
+An example for running UNET with PyTorch on Azure Machine Learning.
 
-Features:
+| Input | Output |
+| :---: |:---:|
+| ![](docs/test_image.png) | ![](docs/test_image_output.png) |
 
-* Train on Azure Machine Learning Compute
-* Real-time scoring on ACI and AKS
-* Support for multi-GPU instances 
-* Azure DevOps training and deployment pipelines
+:+1: Credit for the original source code goes to [mateuszbuda/brain-segmentation-pytorch](https://github.com/mateuszbuda/brain-segmentation-pytorch).
+
+Features of this repo:
+
+* Train a PyTorch UNET with [`lgg-mri-segmentation` dataset](https://www.kaggle.com/mateuszbuda/lgg-mri-segmentation) on Azure Machine Learning Compute
+* Deploy model as real-time scoring API to ACI (CPU-based) and AKS (GPU-based)
+* Support for multi-GPU instances (e.g., `NC12` or `NC24r`)
+* Fully automated through Azure DevOps Pipelines for model training and deployment
 
 # Instructions
 
@@ -35,6 +41,11 @@ Authorization: Bearer <API Key>
 
 < ./docs/test_image.png
 ```
+
+| Input image | Output mask (25 epochs) |
+| :---: |:---:|
+| ![](docs/test_image.png) | ![](docs/test_image_output.png) |
+
 
 # Credits
 
