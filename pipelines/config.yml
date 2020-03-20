@@ -1,0 +1,10 @@
+variables:
+  ml-ws-connection: 'aml-demo' # Workspace Service Connection name
+  ml-ws: 'aml-demo' # AML Workspace name
+  ml-rg: 'aml-demo' # AML resource Group name
+  ml-ct: 'gpu-train-nc24r' # AML Compute cluster name
+  ml-path: 'model/' # Model directory path in repo
+  ml-exp: 'brain-segmentation-pytorch-ci' # Experiment name
+  ml-model-name: 'brain-segmentation-pytorch' # Model name
+  ml-aks-name: 'aks-gpu-prod' # AKS cluster name
+  

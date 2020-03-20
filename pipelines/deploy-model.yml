@@ -1,10 +1,5 @@
-variables:
-  ml-ws-connection: 'aml-demo' # Workspace Service Connection name
-  ml-ws: 'aml-demo' # AML Workspace name
-  ml-rg: 'aml-demo' # AML resource Group name
-  ml-path: 'model/' # Model directory path in repo
-  ml-model-name: 'brain-segmentation-pytorch' # Model name
-  ml-aks-name: 'aks-gpu-prod' # AKS cluster name
+variables: 
+ - template: pipeline-config.yml
 
 trigger: none
 

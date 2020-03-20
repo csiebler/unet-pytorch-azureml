@@ -27,21 +27,21 @@ steps:
       az ml folder attach -w $(ml-ws) -g $(ml-rg)
 
 - task: AzureCLI@2
-  displayName: 'Create GPU-based compute for training'
+  displayName: 'Delete training cluster'
   inputs:
     azureSubscription: $(ml-ws-connection)
     workingDirectory: $(ml-path)
     scriptLocation: inlineScript
     scriptType: bash
     inlineScript: |
-      az ml computetarget create amlcompute -n $(ml-ct) --vm-size Standard_NC24r --max-nodes 1 --idle-seconds-before-scaledown 300
+      az ml computetarget delete -n $(ml-ct)
 
 - task: AzureCLI@2
-  displayName: 'Create GPU-based AKS cluster'
+  displayName: 'Delete AKS cluster'
   inputs:
     azureSubscription: $(ml-ws-connection)
     workingDirectory: $(ml-path)
     scriptLocation: inlineScript
     scriptType: bash
     inlineScript: |
-      az ml computetarget create aks --name $(ml-aks-name) --vm-size Standard_NC6 --cluster-purpose DevTest
+      az ml computetarget delete -n $(ml-aks-name)
