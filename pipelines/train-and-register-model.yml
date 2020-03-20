@@ -1,6 +1,5 @@
 variables: 
- - template: pipeline-config.yml
-
+ - template: config.yml
 
 trigger: none
 
