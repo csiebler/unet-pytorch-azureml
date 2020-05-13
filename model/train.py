@@ -24,18 +24,24 @@ def main(args):
     global run
     run = Run.get_context()
 
+    print("Current directory:", os.getcwd())
+    print("Data directory:", args.images)
+    print("Training directory content:", os.listdir(args.images))
+
     makedirs(args)
     snapshotargs(args)
+
     device = torch.device("cpu" if not torch.cuda.is_available() else args.device)
+    print("Using device:", device)
     
     loader_train, loader_valid = data_loaders(args)
     loaders = {"train": loader_train, "valid": loader_valid}
 
     unet = UNet(in_channels=Dataset.in_channels, out_channels=Dataset.out_channels)
     
-    # parallelize on n GPUs
-    unet = torch.nn.DataParallel(unet).cuda()
-
+    unet = unet.to(device)
+    unet = torch.nn.DataParallel(unet)
+    
     dsc_loss = DiceLoss()
     best_validation_dsc = 0.0
 
@@ -50,9 +56,6 @@ def main(args):
     for epoch in tqdm(range(args.epochs), total=args.epochs):
         for phase in ["train", "valid"]:
             
-            print("Epoch:", epoch)
-            print("Phase:", phase)
-
             start = time.time()
             
             if phase == "train":
@@ -68,7 +71,7 @@ def main(args):
                     step += 1
 
                 x, y_true = data
-                x, y_true = x.cuda(), y_true.cuda()
+                x, y_true = x.to(device), y_true.to(device)
 
                 optimizer.zero_grad()
 
@@ -157,12 +160,14 @@ def datasets(args):
     train = Dataset(
         images_dir=args.images,
         subset="train",
+        validation_cases=args.validation_size,
         image_size=args.image_size,
         transform=transforms(scale=args.aug_scale, angle=args.aug_angle, flip_prob=0.5),
     )
     valid = Dataset(
         images_dir=args.images,
         subset="validation",
+        validation_cases=args.validation_size,
         image_size=args.image_size,
         random_sampling=False,
     )
@@ -233,6 +238,12 @@ if __name__ == "__main__":
         type=int,
         default=4,
         help="number of workers for data loading (default: 4)",
+    )
+    parser.add_argument(
+        "--validation-size",
+        type=int,
+        default=10,
+        help="number of cases used for validation (default: 10)",
     )
     parser.add_argument(
         "--vis-images",

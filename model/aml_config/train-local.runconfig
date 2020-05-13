@@ -1,5 +1,5 @@
 script: train.py
-arguments: [--images, /data, --weights, ./outputs/, --batch-size, 4, --epochs, 1, --lr, 0.001, --workers, 4, --vis-images, 20, --vis-freq, 10, --logs, ./logs, --image-size, 256, --aug-scale, 0.05, --aug-angle, 15]
+arguments: [--images, /data, --weights, ./outputs/, --batch-size, 4, --epochs, 2, --lr, 0.001, --workers, 0, --validation-size, 1, --vis-images, 20, --vis-freq, 10, --logs, ./logs, --image-size, 256, --aug-scale, 0.05, --aug-angle, 15]
 target: local
 framework: Python
 communicator: None

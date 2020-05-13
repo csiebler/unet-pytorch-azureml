@@ -25,7 +25,7 @@ Then you can kick off a local training run:
 az ml run submit-script -c train-local -e unet-train-local
 ```
 
-This will load the `runconfig` from [`aml_config/train-local.runconfig`](aml_config/train-local.runconfig) and log the run's details to an experiment named `unet-train-local`.
+This will load the `runconfig` from [`aml_config/train-local.runconfig`](aml_config/train-local.runconfig) and log the run's details to an experiment named `unet-train-local`. In this case, the size of the validation set is set to `1` for allowing to run the code with a smaller dataset.
 
 ### Train using Azure Machine Learning on a Compute Cluster
 
@@ -56,4 +56,4 @@ Then you can kick off a remote training run on AML Compute:
 az ml run submit-script -c train-amlcompute -e unet-train-amlcompute
 ```
 
-This will load the `runconfig` from [`aml_config/train-amlcompute.runconfig`](aml_config/train-amlcompute.runconfig) and log the run's details to an experiment named `unet-train-amlcompute`.
+This will load the `runconfig` from [`aml_config/train-amlcompute.runconfig`](aml_config/train-amlcompute.runconfig) and log the run's details to an experiment named `unet-train-amlcompute`. In this case, the size of the validation set is set to `10`.
