@@ -1,0 +1,17 @@
+script: train.py
+arguments: [--images, /data, --weights, ./outputs/, --batch-size, 4, --epochs, 1, --lr, 0.001, --workers, 4, --vis-images, 20, --vis-freq, 10, --logs, ./logs, --image-size, 256, --aug-scale, 0.05, --aug-angle, 15]
+target: local
+framework: Python
+communicator: None
+nodeCount: 1
+environment:
+  environmentVariables:
+    EXAMPLE_ENV_VAR: EXAMPLE_VALUE
+  python:
+    userManagedDependencies: false
+    interpreterPath: python
+    condaDependenciesFile: config/train-conda.yml
+  docker:
+    enabled: true
+    baseImage: mcr.microsoft.com/azureml/base:intelmpi2018.3-ubuntu16.04
+    arguments: [-v, C:\Users\clsieble\dev\unet-pytorch-azureml\data\kaggle_3m_small:/data]

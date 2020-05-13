@@ -1,6 +1,7 @@
 kaggle_3m
 logs
 predictions
+data/
 
 unet.pt
 temp/

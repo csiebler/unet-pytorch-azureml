@@ -34,7 +34,7 @@ steps:
     scriptLocation: inlineScript
     scriptType: bash
     inlineScript: |
-      az ml run submit-script -c config/train --ct $(ml-ct) -e $(ml-exp) -t run.json
+      az ml run submit-script -c train-amlcompute --ct $(ml-ct) -e $(ml-exp) -t run.json
 
 # Add potential approval step before registration of model
 
