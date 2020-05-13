@@ -22,12 +22,14 @@ Features of this repo:
 1. Create a Azure Machine Learning workspace called `aml-demo` in a resource group named `aml-demo`
 1. Download the [`lgg-mri-segmentation`](https://www.kaggle.com/mateuszbuda/lgg-mri-segmentation) dataset from Kaggle and put it into a Dataset in Azure Machine Learning, see folder structure:
 ![](docs/folder_structure.png)
-1. Edit [`train.runconfig`](model/config/train.runconfig) and point it to the id of your newly registered dataset e.g., `id: c7e23b60-04c8-46dc-96c5-d9f741f6234b`
-1. If you want to configure the resource names of the pipelines, edit [`pipelines/config.yml`](pipelines/config.yml)
-1. Import and run infrastructure deployment pipeline from [`pipelines/deploy-infrastructure.yml`](pipelines/deploy-infrastructure.yml)
-1. Import and run model training and registration pipeline from [`pipelines/train-and-register-model.yml`](pipelines/train-and-register-model.yml)
-1. Import and run model deployment pipeline from [`pipelines/deploy-model.yml`](pipelines/deploy-model.yml)
+1. Edit [`train-amlcompute.runconfig`](model/aml_config/train-amlcompute.runconfig) and point it to the id of your newly registered dataset e.g., `id: c7e23b60-04c8-46dc-96c5-d9f741f6234b` (use `az ml dataset list` to get the dataset's id)
+1. If you want to configure the resource names of the pipelines, edit [`automation/config.yml`](automation/config.yml)
+1. Import and run infrastructure deployment pipeline from [`automation/deploy-infrastructure.yml`](automation/deploy-infrastructure.yml)
+1. Import and run model training and registration pipeline from [`automation/train-and-register-model.yml`](automation/train-and-register-model.yml)
+1. Import and run model deployment pipeline from [`automation/deploy-model.yml`](automation/deploy-model.yml)
 1. Test your endpoints manually, e.g. using [VSCode Rest Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)
+
+For running this repo's code locally, see the [`README.md`](model/README.md) in the `model` folder.
 
 ```
 POST https://<ACI Scoring URL> HTTP/1.1

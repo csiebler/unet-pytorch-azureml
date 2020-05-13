@@ -15,7 +15,8 @@ In [`aml_config/train-local.runconfig`](aml_config/train-local.runconfig), updat
 docker:
   enabled: true
   baseImage: mcr.microsoft.com/azureml/base:intelmpi2018.3-ubuntu16.04
-  arguments: [-v, C:\Users\clsieble\dev\unet-pytorch-azureml\data\kaggle_3m_small:/data] # Update to point to your data folder
+  # Update to point to your data folder
+  arguments: [-v, C:\Users\clsieble\dev\unet-pytorch-azureml\data\kaggle_3m_small:/data]
 ```
 
 Then you can kick off a local training run:
@@ -35,7 +36,8 @@ data:
   training_data:
     dataLocation:
       dataset:
-        id: c7e23b60-04c8-46dc-96c5-d9f741f6234b # Point to your training dataset's id
+        # Point to your training dataset's id
+        id: c7e23b60-04c8-46dc-96c5-d9f741f6234b
     mechanism: mount
     pathOnCompute: /data
     environmentVariableName: training_data
@@ -51,7 +53,7 @@ az ml dataset list
 Then you can kick off a remote training run on AML Compute:
 
 ```
-az ml run submit-script -c config/training-amlcompute -e unet-train-amlcompute
+az ml run submit-script -c train-amlcompute -e unet-train-amlcompute
 ```
 
 This will load the `runconfig` from [`aml_config/train-amlcompute.runconfig`](aml_config/train-amlcompute.runconfig) and log the run's details to an experiment named `unet-train-amlcompute`.
