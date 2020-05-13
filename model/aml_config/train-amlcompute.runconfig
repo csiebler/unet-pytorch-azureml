@@ -10,7 +10,7 @@ environment:
   python:
     userManagedDependencies: false
     interpreterPath: python
-    condaDependenciesFile: config/train-conda.yml
+    condaDependenciesFile: aml_config/train-conda.yml
   docker:
     enabled: true
     baseImage: mcr.microsoft.com/azureml/base-gpu:intelmpi2018.3-cuda10.0-cudnn7-ubuntu16.04
