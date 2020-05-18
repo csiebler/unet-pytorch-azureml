@@ -1,6 +1,6 @@
 script: train.py
 arguments: [--images, /data, --weights, ./outputs/, --batch-size, 16, --epochs, 25, --lr, 0.001, --workers, 4, --vis-images, 200, --vis-freq, 10, --logs, ./logs, --image-size, 256, --aug-scale, 0.05, --aug-angle, 15]
-target: cpu-cluster
+target: gpu-cluster
 framework: Python
 communicator: None
 nodeCount: 1
